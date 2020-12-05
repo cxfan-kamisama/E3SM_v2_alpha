@@ -23,7 +23,7 @@
 ###===================================================================
 
 ### BASIC INFO ABOUT RUN
-set job_name       = E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover
+set job_name       = E3SM_v2_alpha_AMIP_RRTMG_standard_test
 set compset        = FC5AV1C-04P2
 set resolution     = ne30_ne30
 set machine        = cori-knl
@@ -57,7 +57,7 @@ set run_refcase = 20171228.beta3rc13_1850.ne30_oECv3_ICG.edison
 set run_refdate = 0331-01-01
 
 ### DIRECTORIES
-set code_root_dir               = ~/model_orig/E3SM_v2_alpha_startover
+set code_root_dir               = ~/model_codes/E3SM_v2_alpha
 set e3sm_simulations_dir        = /global/cscratch1/sd/$USER/E3SM_simulations
 set case_build_dir              = ${e3sm_simulations_dir}/${case_name}/build
 set case_run_dir                = ${e3sm_simulations_dir}/${case_name}/run
@@ -947,7 +947,7 @@ cat <<EOF >> user_nl_cam
  mfilt  = 1
  avgflag_pertape = 'A'
  empty_htapes = .false.
- flag_mc6=.true.
+ flag_mc6=.false.
  flag_emis=.false.
  flag_rtr2=.false.
  flag_scat=.false.
