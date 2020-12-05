@@ -23,9 +23,9 @@
 ###===================================================================
 
 ### BASIC INFO ABOUT RUN
-set job_name       = CMIP_RRTMG_standd
-set compset        = A_WCYCL2000S
-set resolution     = ne30_oECv3_ICG
+set job_name       = AMIP_RRTMG_UMRad_abs
+set compset        = FC5AV1C-04P2
+set resolution     = ne30_ne30
 set machine        = cori-knl
 set walltime       = 12:00:00
 setenv project       m2136
@@ -36,9 +36,7 @@ set e3sm_tag       = maint-1.0   # github tag or hash
 set tag_name       = 20180420    # code sub-directory name
 
 ### CASE_NAME
-set ensnum = "ens1" 
-set pertlim = 1.d-14
-set case_name = ${job_name}.ne30_ne30.cori-knl-ens-${ensnum}
+set case_name = ${job_name}.ne30_ne30.cori-knl
 
 ### BUILD OPTIONS
 set debug_compile  = false
@@ -75,12 +73,12 @@ set short_term_archive_root_dir = ${e3sm_simulations_dir}/${case_name}/archive
 #set restart_num      = 1
 
 ## Multi-year simulation
-set stop_units       = nmonths
-set stop_num         = 18
-set restart_units    = nmonths
-set restart_num      = 6
+set stop_units       = nyears
+set stop_num         = 1
+set restart_units    = nyears
+set restart_num      = 1
 
-set num_resubmits    = 16
+set num_resubmits    = 10
 set do_short_term_archiving      = false
 
 ### SIMULATION OPTIONS
@@ -950,12 +948,11 @@ $xmlchange_exe --id DEBUG --val `uppercase $debug_compile`
 cat <<EOF >> user_nl_cam
  nhtfrq = 0
  mfilt  = 1
- pertlim = $pertlim
  avgflag_pertape = 'A'
  empty_htapes = .false.
- flag_mc6=.false.
+ flag_mc6=.true.
  flag_emis=.false.
- flag_rtr2=.false.
+ flag_rtr2=.true.
  flag_scat=.false.
  fincl1='FLDS01','FLDS02','FLDS03','FLDS04','FLDS05','FLDS06','FLDS07','FLDS08',
         'FLDS09','FLDS10','FLDS11','FLDS12','FLDS13','FLDS14','FLDS15','FLDS16',
