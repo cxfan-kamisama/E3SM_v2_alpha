@@ -45,8 +45,8 @@ set old_executable = false      # build executable is set to 'false', reuse
 
 ### SUBMIT OPTIONS
 set submit_run       = true     # submit experiment after successful build
-set debug_queue      = false     # submit to debug queue?
-set job_queue        = low      #debug, low, regular
+set debug_queue      = true     # submit to debug queue?
+set job_queue        = debug      #debug, low, regular
 
 ### PROCESSOR CONFIGURATION
 set processor_config = L        # PE count: S (39 nodes), L (285 nodes)
@@ -833,9 +833,13 @@ endif
 ## Chris Golaz: switch to rrtmgp
 if ( $rad_schm == RRTMGP ) then
   $xmlchange_exe --append CAM_CONFIG_OPTS='-rad rrtmgp'
-  ln -s /global/cscratch1/sd/xianwen/data/emis/surface_emissivity_1x1_RRTMGP_53deg.nc $case_run_dir/surface_emissivity_1x1_UMRad_53deg.nc  
+  if ( ! -e $case_run_dir/surface_emissivity_1x1_UMRad_53deg.nc) then
+    ln -s /global/cscratch1/sd/xianwen/data/emis/surface_emissivity_1x1_RRTMGP_53deg.nc $case_run_dir/surface_emissivity_1x1_UMRad_53deg.nc  
+  endif
 else if ($rad_schm == RRTMG) then
-  ln -s /global/cscratch1/sd/xianwen/data/emis/surface_emissivity_1x1_RRTMG_53deg.nc $case_run_dir/surface_emissivity_1x1_UMRad_53deg.nc  
+  if ( ! -e $case_run_dir/surface_emissivity_1x1_UMRad_53deg.nc) then
+    ln -s /global/cscratch1/sd/xianwen/data/emis/surface_emissivity_1x1_RRTMG_53deg.nc $case_run_dir/surface_emissivity_1x1_UMRad_53deg.nc  
+  endif
 else 
   e3sm_newline
   e3sm_print 'ERROR: rad_schm should be either RRTMG or RRTMGP'
