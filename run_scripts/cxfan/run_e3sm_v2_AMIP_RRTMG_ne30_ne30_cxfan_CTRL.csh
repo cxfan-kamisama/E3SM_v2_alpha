@@ -833,11 +833,11 @@ endif
 ## Chris Golaz: switch to rrtmgp
 if ( $rad_schm == RRTMGP ) then
   $xmlchange_exe --append CAM_CONFIG_OPTS='-rad rrtmgp'
-  if ( ! -e $case_run_dir/surface_emissivity_1x1_UMRad_53deg.nc) then
+  if ( ! -l $case_run_dir/surface_emissivity_1x1_UMRad_53deg.nc) then
     ln -s /global/cscratch1/sd/xianwen/data/emis/surface_emissivity_1x1_RRTMGP_53deg.nc $case_run_dir/surface_emissivity_1x1_UMRad_53deg.nc  
   endif
 else if ($rad_schm == RRTMG) then
-  if ( ! -e $case_run_dir/surface_emissivity_1x1_UMRad_53deg.nc) then
+  if ( ! -l $case_run_dir/surface_emissivity_1x1_UMRad_53deg.nc) then
     ln -s /global/cscratch1/sd/xianwen/data/emis/surface_emissivity_1x1_RRTMG_53deg.nc $case_run_dir/surface_emissivity_1x1_UMRad_53deg.nc  
   endif
 else 
