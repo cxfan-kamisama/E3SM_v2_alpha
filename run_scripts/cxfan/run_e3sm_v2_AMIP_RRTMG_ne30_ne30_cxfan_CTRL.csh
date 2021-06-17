@@ -23,7 +23,7 @@
 ###===================================================================
 
 ### BASIC INFO ABOUT RUN
-set job_name       = AMIP_RRTMG_UMRad_standd
+set job_name       = AMIP_RRTMG_CTRL
 set compset        = FC5AV1C-04P2
 set resolution     = ne30_ne30
 set machine        = cori-knl
@@ -36,7 +36,7 @@ set e3sm_tag       = maint-1.0   # github tag or hash
 set tag_name       = 20180420    # code sub-directory name
 
 ### CASE_NAME
-set case_name = ${job_name}.ne30_ne30.cori-knl
+set case_name = ${job_name}.${resolution}.${machine}
 
 ### BUILD OPTIONS
 set debug_compile  = false
@@ -46,7 +46,7 @@ set old_executable = false      # build executable is set to 'false', reuse
 ### SUBMIT OPTIONS
 set submit_run       = true     # submit experiment after successful build
 set debug_queue      = false     # submit to debug queue?
-set job_queue        = regular      #debug, low, regular
+set job_queue        = low      #debug, low, regular
 
 ### PROCESSOR CONFIGURATION
 set processor_config = L        # PE count: S (39 nodes), L (285 nodes)
@@ -59,7 +59,7 @@ set run_refdate = 0331-01-01
 
 ### DIRECTORIES
 set code_root_dir               = ~/model/E3SM_v2_alpha_UMRad
-set e3sm_simulations_dir        = /global/cscratch1/sd/$USER/E3SM_simulations
+set e3sm_simulations_dir        = /global/cscratch1/sd/$USER/E3SM_v2_alpha_UMRad
 set case_build_dir              = ${e3sm_simulations_dir}/${case_name}/build
 set case_run_dir                = ${e3sm_simulations_dir}/${case_name}/run
 set short_term_archive_root_dir = ${e3sm_simulations_dir}/${case_name}/archive
@@ -67,18 +67,18 @@ set short_term_archive_root_dir = ${e3sm_simulations_dir}/${case_name}/archive
 ### LENGTH OF SIMULATION, RESTARTS, AND ARCHIVING
 
 ## 5-day test simulation
-#set stop_units       = ndays
-#set stop_num         = 2
-#set restart_units    = $stop_units
-#set restart_num      = 1
+set stop_units       = ndays
+set stop_num         = 2
+set restart_units    = $stop_units
+set restart_num      = 1
 
 ## Multi-year simulation
-set stop_units       = nyears
-set stop_num         = 2
-set restart_units    = nyears
-set restart_num      = 2
+#set stop_units       = nyears
+#set stop_num         = 2
+#set restart_units    = nyears
+#set restart_num      = 2
 
-set num_resubmits    = 5
+set num_resubmits    = 0
 set do_short_term_archiving      = false
 
 ### SIMULATION OPTIONS
@@ -946,7 +946,7 @@ $xmlchange_exe --id DEBUG --val `uppercase $debug_compile`
 # NOTE: $atm_output_freq and $records_per_atm_output_file are so commonly used, that they are set in the options at the top of this script.
 
 cat <<EOF >> user_nl_cam
- nhtfrq = 0
+ nhtfrq = -24
  mfilt  = 1
  avgflag_pertape = 'A'
  empty_htapes = .false.
