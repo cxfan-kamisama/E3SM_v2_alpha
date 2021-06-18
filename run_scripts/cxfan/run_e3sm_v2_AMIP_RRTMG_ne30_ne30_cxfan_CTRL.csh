@@ -27,7 +27,7 @@ set job_name       = AMIP_RRTMG_CTRL
 set compset        = FC5AV1C-04P2
 set resolution     = ne30_ne30
 set machine        = cori-knl
-set walltime       = 00:30:00
+set walltime       = 12:00:00
 setenv project       m2136
 
 ### SOURCE CODE OPTIONS
@@ -45,8 +45,8 @@ set old_executable = false      # build executable is set to 'false', reuse
 
 ### SUBMIT OPTIONS
 set submit_run       = true     # submit experiment after successful build
-set debug_queue      = true     # submit to debug queue?
-set job_queue        = debug      #debug, low, regular
+set debug_queue      = false     # submit to debug queue?
+set job_queue        = regular      #debug, low, regular
 
 ### PROCESSOR CONFIGURATION
 set processor_config = L        # PE count: S (39 nodes), L (285 nodes)
@@ -67,9 +67,9 @@ set short_term_archive_root_dir = ${e3sm_simulations_dir}/${case_name}/archive
 ### LENGTH OF SIMULATION, RESTARTS, AND ARCHIVING
 
 ## 5-day test simulation
-set stop_units       = ndays
-set stop_num         = 2
-set restart_units    = $stop_units
+set stop_units       = nmonths
+set stop_num         = 1
+set restart_units    = nmonths
 set restart_num      = 1
 
 ## Multi-year simulation
@@ -79,7 +79,7 @@ set restart_num      = 1
 #set restart_num      = 2
 
 set num_resubmits    = 0
-set do_short_term_archiving      = false
+set do_short_term_archiving      = true
 
 ### SIMULATION OPTIONS
 set start_date                   = 2000-01-01
@@ -89,7 +89,7 @@ set rad_schm = RRTMG  #valid values: RRTMG or RRTMGP
 
 ### COUPLER HISTORY FILES
 set do_cpl_hist    = true
-set cpl_hist_units = nyears
+set cpl_hist_units = nmonths
 set cpl_hist_num   = 1
 
 ### AUTOMATIC DELETION OPTIONS
