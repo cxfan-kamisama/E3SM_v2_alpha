@@ -27,7 +27,7 @@ set job_name       = AMIP_RRTMG_CTRL
 set compset        = FC5AV1C-04P2
 set resolution     = ne30_ne30
 set machine        = cori-knl
-set walltime       = 12:00:00
+set walltime       = 00:30:00
 setenv project       m2136
 
 ### SOURCE CODE OPTIONS
