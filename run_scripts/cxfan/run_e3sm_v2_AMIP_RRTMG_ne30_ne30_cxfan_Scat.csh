@@ -23,7 +23,7 @@
 ###===================================================================
 
 ### BASIC INFO ABOUT RUN
-set job_name       = AMIP_RRTMG_CTRL
+set job_name       = AMIP_RRTMG_Scat
 set compset        = FC5AV1C-04P2
 set resolution     = ne30_ne30
 set machine        = cori-knl
@@ -954,10 +954,10 @@ cat <<EOF >> user_nl_cam
  mfilt  = 1
  avgflag_pertape = 'A'
  empty_htapes = .false.
- flag_mc6=.false.
+ flag_mc6=.true.
  flag_emis=.false.
- flag_rtr2=.false.
- flag_scat=.false.
+ flag_rtr2=.true.
+ flag_scat=.true.
 EOF
 
 cat <<EOF >> user_nl_clm
