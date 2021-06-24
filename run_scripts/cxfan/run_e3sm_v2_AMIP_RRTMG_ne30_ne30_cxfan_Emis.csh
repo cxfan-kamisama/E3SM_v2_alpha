@@ -23,7 +23,7 @@
 ###===================================================================
 
 ### BASIC INFO ABOUT RUN
-set job_name       = AMIP_RRTMG_Emis
+set job_name       = AMIP_RRTMG_Emis1
 set compset        = FC5AV1C-04P2
 set resolution     = ne30_ne30
 set machine        = cori-knl
@@ -67,9 +67,9 @@ set short_term_archive_root_dir = ${e3sm_simulations_dir}/${case_name}/archive
 ### LENGTH OF SIMULATION, RESTARTS, AND ARCHIVING
 
 ## 5-day test simulation
-set stop_units       = nmonths
-set stop_num         = 1
-set restart_units    = nmonths
+set stop_units       = nyears
+set stop_num         = 2
+set restart_units    = nyears
 set restart_num      = 1
 
 ## Multi-year simulation
@@ -79,7 +79,7 @@ set restart_num      = 1
 #set restart_num      = 2
 
 set num_resubmits    = 0
-set do_short_term_archiving      = true
+set do_short_term_archiving      = false
 
 ### SIMULATION OPTIONS
 set start_date                   = 2000-01-01
@@ -89,7 +89,7 @@ set rad_schm = RRTMG  #valid values: RRTMG or RRTMGP
 
 ### COUPLER HISTORY FILES
 set do_cpl_hist    = true
-set cpl_hist_units = nmonths
+set cpl_hist_units = nyears
 set cpl_hist_num   = 1
 
 ### AUTOMATIC DELETION OPTIONS
@@ -950,7 +950,7 @@ $xmlchange_exe --id DEBUG --val `uppercase $debug_compile`
 # NOTE: $atm_output_freq and $records_per_atm_output_file are so commonly used, that they are set in the options at the top of this script.
 
 cat <<EOF >> user_nl_cam
- nhtfrq = -24
+ nhtfrq = 0
  mfilt  = 1
  avgflag_pertape = 'A'
  empty_htapes = .false.
