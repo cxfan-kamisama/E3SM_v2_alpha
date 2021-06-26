@@ -86,6 +86,7 @@ set start_date                   = 2000-01-01
 
 ### Radiation option (Xianwen)
 set rad_schm = RRTMG  #valid values: RRTMG or RRTMGP
+set rad_emis_path = $HOME/data/surf_emis
 
 ### COUPLER HISTORY FILES
 set do_cpl_hist    = true
@@ -834,11 +835,11 @@ endif
 if ( $rad_schm == RRTMGP ) then
   $xmlchange_exe --append CAM_CONFIG_OPTS='-rad rrtmgp'
   if ( ! -l $case_run_dir/surface_emissivity_1x1_UMRad_53deg.nc) then
-    ln -s /global/cscratch1/sd/xianwen/data/emis/surface_emissivity_1x1_RRTMGP_53deg.nc $case_run_dir/surface_emissivity_1x1_UMRad_53deg.nc  
+    ln -s $rad_emis_path/surface_emissivity_1x1_RRTMGP_53deg.nc $case_run_dir/surface_emissivity_1x1_UMRad_53deg.nc  
   endif
 else if ($rad_schm == RRTMG) then
   if ( ! -l $case_run_dir/surface_emissivity_1x1_UMRad_53deg.nc) then
-    ln -s /global/cscratch1/sd/xianwen/data/emis/surface_emissivity_1x1_RRTMG_53deg.nc $case_run_dir/surface_emissivity_1x1_UMRad_53deg.nc  
+    ln -s $rad_emis_path/surface_emissivity_1x1_RRTMG_53deg.nc $case_run_dir/surface_emissivity_1x1_UMRad_53deg.nc  
   endif
 else 
   e3sm_newline
