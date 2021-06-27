@@ -86,7 +86,7 @@ set start_date                   = 2000-01-01
 
 ### Radiation option (Xianwen)
 set rad_schm = RRTMG  #valid values: RRTMG or RRTMGP
-set rad_emis_path = $HOME/data/surf_emis
+set rad_emis_path = $SCRATCH/data/surf_emis
 
 ### COUPLER HISTORY FILES
 set do_cpl_hist    = true
