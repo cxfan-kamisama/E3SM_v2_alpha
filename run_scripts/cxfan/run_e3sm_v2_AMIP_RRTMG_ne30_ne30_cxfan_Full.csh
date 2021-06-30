@@ -68,7 +68,7 @@ set short_term_archive_root_dir = ${e3sm_simulations_dir}/${case_name}/archive
 
 ## 5-day test simulation
 set stop_units       = nyears
-set stop_num         = 2
+set stop_num         = 1
 set restart_units    = nyears
 set restart_num      = 1
 
@@ -78,7 +78,7 @@ set restart_num      = 1
 #set restart_units    = nyears
 #set restart_num      = 2
 
-set num_resubmits    = 0
+set num_resubmits    = 1
 set do_short_term_archiving      = false
 
 ### SIMULATION OPTIONS
