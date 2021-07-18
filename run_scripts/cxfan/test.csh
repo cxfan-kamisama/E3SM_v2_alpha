@@ -23,11 +23,11 @@
 ###===================================================================
 
 ### BASIC INFO ABOUT RUN
-set job_name       = AMIP_RRTMG_CTRL1
+set job_name       = AMIP_RRTMG_SLAB_OCEAN
 set compset        = FC5AV1C-04P2-SOM
 set resolution     = ne30_ne30
 set machine        = cori-knl
-set walltime       = 12:00:00
+set walltime       = 00:30:00
 setenv project       m2136
 
 ### SOURCE CODE OPTIONS
@@ -45,7 +45,7 @@ set old_executable = false      # build executable is set to 'false', reuse
 
 ### SUBMIT OPTIONS
 set submit_run       = true     # submit experiment after successful build
-set debug_queue      = false     # submit to debug queue?
+set debug_queue      = true     # submit to debug queue?
 set job_queue        = regular      #debug, low, regular
 
 ### PROCESSOR CONFIGURATION
@@ -63,14 +63,15 @@ set e3sm_simulations_dir        = /global/cscratch1/sd/$USER/E3SM_v2_alpha_UMRad
 set case_build_dir              = ${e3sm_simulations_dir}/${case_name}/build
 set case_run_dir                = ${e3sm_simulations_dir}/${case_name}/run
 set short_term_archive_root_dir = ${e3sm_simulations_dir}/${case_name}/archive
+set input_data_dir              = /global/cscratch1/sd/$USER/data/inputdata
 
 ### LENGTH OF SIMULATION, RESTARTS, AND ARCHIVING
 
 ## 5-day test simulation
-set stop_units       = nyears
-set stop_num         = 1
-set restart_units    = nyears
-set restart_num      = 1
+set stop_units       = ndays
+set stop_num         = 5
+set restart_units    = ndays
+set restart_num      = 5
 
 ## Multi-year simulation
 #set stop_units       = nyears
@@ -78,7 +79,7 @@ set restart_num      = 1
 #set restart_units    = nyears
 #set restart_num      = 2
 
-set num_resubmits    = 1
+set num_resubmits    = 0
 set do_short_term_archiving      = false
 
 ### SIMULATION OPTIONS
@@ -803,6 +804,7 @@ endif
 #NOTE: the following line can fail for old versions of the code (like v0.3) because
 #"-value" is a new option in xmlquery. If that happens, comment out the next line and
 #hardcode in the appropriate DIN_LOC_ROOT value for your machine.
+$xmlchange_exe --id DIN_LOC_ROOT --val $input_data_dir
 set input_data_dir = `$xmlquery_exe DIN_LOC_ROOT --value`
 
 #============================================
@@ -851,6 +853,11 @@ endif
 ## link files of frequently used settings to case_scripts directory (Xianwen)
 cp $code_root_dir/run_scripts/branch_run.sh $case_scripts_dir/
 cp $code_root_dir/run_scripts/freq_settings.sh $case_scripts_dir/
+
+## Chongxing Fan: Specify SOM forcing file
+if ( `$xmlquery_exe DOCN_MODE --value` == 'som') then
+  $xmlchange_exe --id DOCN_SOM_FILENAME --val 'pop_frc.gx1v6.100513.nc'
+endif
 
 #===========================
 # SET THE PARTITION OF NODES
