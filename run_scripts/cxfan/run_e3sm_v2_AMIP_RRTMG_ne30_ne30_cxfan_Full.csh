@@ -23,11 +23,11 @@
 ###===================================================================
 
 ### BASIC INFO ABOUT RUN
-set job_name       = AMIP_RRTMG_Full1
+set job_name       = AMIP_RRTMG_TEST_1_1_FULL
 set compset        = FC5AV1C-04P2
 set resolution     = ne30_ne30
 set machine        = cori-knl
-set walltime       = 12:00:00
+set walltime       = 00:15:00
 setenv project       m2136
 
 ### SOURCE CODE OPTIONS
@@ -45,8 +45,8 @@ set old_executable = false      # build executable is set to 'false', reuse
 
 ### SUBMIT OPTIONS
 set submit_run       = true     # submit experiment after successful build
-set debug_queue      = false     # submit to debug queue?
-set job_queue        = regular      #debug, low, regular
+set debug_queue      = true     # submit to debug queue?
+set job_queue        = debug      #debug, low, regular
 
 ### PROCESSOR CONFIGURATION
 set processor_config = L        # PE count: S (39 nodes), L (285 nodes)
@@ -67,9 +67,9 @@ set short_term_archive_root_dir = ${e3sm_simulations_dir}/${case_name}/archive
 ### LENGTH OF SIMULATION, RESTARTS, AND ARCHIVING
 
 ## 5-day test simulation
-set stop_units       = nyears
+set stop_units       = ndays
 set stop_num         = 1
-set restart_units    = nyears
+set restart_units    = ndays
 set restart_num      = 1
 
 ## Multi-year simulation
@@ -78,7 +78,7 @@ set restart_num      = 1
 #set restart_units    = nyears
 #set restart_num      = 2
 
-set num_resubmits    = 1
+set num_resubmits    = 0
 set do_short_term_archiving      = false
 
 ### SIMULATION OPTIONS
