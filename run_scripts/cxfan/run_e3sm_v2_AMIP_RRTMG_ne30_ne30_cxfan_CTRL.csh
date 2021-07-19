@@ -23,7 +23,7 @@
 ###===================================================================
 
 ### BASIC INFO ABOUT RUN
-set job_name       = AMIP_RRTMG_TEST_BASE
+set job_name       = AMIP_RRTMG_TEST_1_1
 set compset        = FC5AV1C-04P2
 set resolution     = ne30_ne30
 set machine        = cori-knl
