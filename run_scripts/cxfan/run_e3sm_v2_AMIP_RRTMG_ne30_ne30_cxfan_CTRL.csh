@@ -49,7 +49,7 @@ set debug_queue      = true     # submit to debug queue?
 set job_queue        = debug      #debug, low, regular
 
 ### PROCESSOR CONFIGURATION
-set processor_config = L        # PE count: S (39 nodes), L (285 nodes)
+set processor_config = customknl        # PE count: S (39 nodes), L (285 nodes)
 
 ### STARTUP TYPE
 set model_start_type = initial
@@ -722,38 +722,38 @@ else if ( `lowercase $processor_config` == 'customknl' ) then
 
   e3sm_print 'using custom layout for cori-knl because $processor_config = '$processor_config
 
-  ${xmlchange_exe} MAX_TASKS_PER_NODE="64"
-  ${xmlchange_exe} PES_PER_NODE="256"
+  ${xmlchange_exe} MAX_TASKS_PER_NODE="132"
+  ${xmlchange_exe} PES_PER_NODE="33"
 
-  ${xmlchange_exe} NTASKS_ATM="5400"
+  ${xmlchange_exe} NTASKS_ATM="1350"
   ${xmlchange_exe} ROOTPE_ATM="0"
 
-  ${xmlchange_exe} NTASKS_LND="320"
-  ${xmlchange_exe} ROOTPE_LND="5120"
+  ${xmlchange_exe} NTASKS_LND="1350"
+  ${xmlchange_exe} ROOTPE_LND="0"
 
-  ${xmlchange_exe} NTASKS_ICE="5120"
+  ${xmlchange_exe} NTASKS_ICE="1200"
   ${xmlchange_exe} ROOTPE_ICE="0"
 
-  ${xmlchange_exe} NTASKS_OCN="3840"
-  ${xmlchange_exe} ROOTPE_OCN="5440"
+  ${xmlchange_exe} NTASKS_OCN="1200"
+  ${xmlchange_exe} ROOTPE_OCN="0"
 
-  ${xmlchange_exe} NTASKS_CPL="5120"
+  ${xmlchange_exe} NTASKS_CPL="1350"
   ${xmlchange_exe} ROOTPE_CPL="0"
 
-  ${xmlchange_exe} NTASKS_GLC="320"
-  ${xmlchange_exe} ROOTPE_GLC="5120"
+  ${xmlchange_exe} NTASKS_GLC="33"
+  ${xmlchange_exe} ROOTPE_GLC="0"
 
-  ${xmlchange_exe} NTASKS_ROF="320"
-  ${xmlchange_exe} ROOTPE_ROF="5120"
+  ${xmlchange_exe} NTASKS_ROF="1350"
+  ${xmlchange_exe} ROOTPE_ROF="0"
 
-  ${xmlchange_exe} NTASKS_WAV="5120"
+  ${xmlchange_exe} NTASKS_WAV="33"
   ${xmlchange_exe} ROOTPE_WAV="0"
 
-  ${xmlchange_exe} NTHRDS_ATM="1"
-  ${xmlchange_exe} NTHRDS_LND="1"
+  ${xmlchange_exe} NTHRDS_ATM="4"
+  ${xmlchange_exe} NTHRDS_LND="4"
   ${xmlchange_exe} NTHRDS_ICE="1"
   ${xmlchange_exe} NTHRDS_OCN="1"
-  ${xmlchange_exe} NTHRDS_CPL="1"
+  ${xmlchange_exe} NTHRDS_CPL="4"
   ${xmlchange_exe} NTHRDS_GLC="1"
   ${xmlchange_exe} NTHRDS_ROF="1"
   ${xmlchange_exe} NTHRDS_WAV="1"
