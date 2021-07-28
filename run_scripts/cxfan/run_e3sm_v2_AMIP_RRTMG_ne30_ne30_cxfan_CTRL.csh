@@ -723,7 +723,7 @@ else if ( `lowercase $processor_config` == 'customknl' ) then
   e3sm_print 'using custom layout for cori-knl because $processor_config = '$processor_config
 
   ${xmlchange_exe} MAX_TASKS_PER_NODE="132"
-  ${xmlchange_exe} PES_PER_NODE="33"
+  ${xmlchange_exe} MAX_MPITASKS_PER_NODE="33"
 
   ${xmlchange_exe} NTASKS_ATM="1350"
   ${xmlchange_exe} ROOTPE_ATM="0"
